@@ -48,7 +48,7 @@ class SQLiteRepository(AbstractRepository[T]):
             record = cur.fetchall()
             if len(record) > 0:
                 return record[0]
-
+        con.close()
     def update(self, obj: T) -> None:
         names = self.fields.keys()
         #p = ', '.join("?" * len(self.fields))
@@ -65,7 +65,9 @@ class SQLiteRepository(AbstractRepository[T]):
         con.close()
 
     def delete(self, pk: int) -> None:
-        pass
-
+        with sqlite3.connect(self.db_file) as con:
+            cur = con.cursor()
+            cur.execute(f'DELETE FROM {self.table_name} WHERE pk = {pk}')
+        con.close()
     def get_all(self, where: dict[str, Any] | None = None) -> list[T]:
         pass

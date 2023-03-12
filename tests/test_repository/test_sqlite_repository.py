@@ -8,8 +8,6 @@ def custom_class():
     class Custom:
         pk: int = 0
         value: str = f'HELLO {pk}'
-        def setValue(self, value: str):
-            self.value = value
     return Custom
 
 
@@ -27,11 +25,11 @@ def test_crud(repo, custom_class):
     assert foundRecord[0] == obj.pk
     assert foundRecord[1] == obj.value
     obj2 = custom_class()
-    obj2.pk = 1
+    obj2.pk = obj.pk
     obj2.value = "Some other value"
     repo.update(obj2)
     foundRecord = repo.get(obj2.pk)
     assert foundRecord[0] == obj2.pk
     assert foundRecord[1] == obj2.value
-    # repo.delete(pk)
-    # assert repo.get(pk) is None
+    repo.delete(pk)
+    assert repo.get(pk) is None
