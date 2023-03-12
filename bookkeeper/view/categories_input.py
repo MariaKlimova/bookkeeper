@@ -1,16 +1,14 @@
 from PySide6 import QtWidgets
-from edit_categories_window.edit_categories_window import EditCategoriesWindow
-
-
-
+from bookkeeper.view.edit_categories_window.edit_categories_window import EditCategoriesWindow
 
 
 class CategoriesInput(QtWidgets.QWidget):
-    def on_edit_click(self):
-        self.second_window = EditCategoriesWindow()
+    def on_edit_click(self) -> None:
         self.second_window.show()
-    def __init__(self):
+
+    def __init__(self) -> None:
         super().__init__()
+        self.second_window = EditCategoriesWindow()
         self.box = QtWidgets.QHBoxLayout()
         self.label = QtWidgets.QLabel("Категория")
         self.input = QtWidgets.QComboBox()

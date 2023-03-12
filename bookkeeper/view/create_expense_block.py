@@ -1,10 +1,10 @@
 from PySide6 import QtWidgets
-from limit_input import LimitInput
-from categories_input import CategoriesInput
+from bookkeeper.view.limit_input import LimitInput
+from bookkeeper.view.categories_input import CategoriesInput
 
 
 class CreateExpenseBlock(QtWidgets.QWidget):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self.box = QtWidgets.QVBoxLayout()
         self.limit_input = LimitInput()

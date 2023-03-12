@@ -41,7 +41,8 @@ class SQLiteRepository(AbstractRepository[T]):
             cur.execute('PRAGMA foreign_keys = ON')
             #s = f'INSERT INTO {self.table_name} ({names}) VALUES ({p})'
             cur.execute(f'INSERT INTO {self.table_name} ({names}) VALUES ({places})', values)
-            obj.pk = cur.lastrowid
+            if cur.lastrowid:
+                obj.pk = cur.lastrowid
         con.close()
         return obj.pk
 
@@ -52,8 +53,8 @@ class SQLiteRepository(AbstractRepository[T]):
             record = cur.fetchall()
             if len(record) > 0:
                 return record[0]
-        con.close()
-        return None
+            else:
+                return None
     def update(self, obj: T) -> None:
         names = self.fields.keys()
         #p = ', '.join("?" * len(self.fields))
@@ -74,5 +75,11 @@ class SQLiteRepository(AbstractRepository[T]):
             cur = con.cursor()
             cur.execute(f'DELETE FROM {self.table_name} WHERE pk = {pk}')
         con.close()
-    def get_all(self, where: dict[str, Any] | None = None) -> list[T]:
-        pass
+    def get_all(self, where: dict[str, Any] | None = None) -> list[T] :
+        with sqlite3.connect(self.db_file) as con:
+            cur = con.cursor()
+            cur.execute(f'SELECT * FROM {self.table_name}')
+            result = cur.fetchall()
+
+        con.close()
+        return result

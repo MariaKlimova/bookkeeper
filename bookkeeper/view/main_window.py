@@ -1,14 +1,14 @@
 from PySide6 import QtWidgets
-from expenses_table import ExpensesTable
-from budget_table import BudgetTable
-from create_expense_block import CreateExpenseBlock
+from bookkeeper.view.expenses_table import ExpensesTable
+from bookkeeper.view.budget_table import BudgetTable
+from bookkeeper.view.create_expense_block import CreateExpenseBlock
 
 
 class MainWindow(QtWidgets.QWidget):
     """
         Компонент, визуализирующий главное окно приложения
     """
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self.setWindowTitle("The Bookkeeper App")
         self.vbox = QtWidgets.QVBoxLayout()

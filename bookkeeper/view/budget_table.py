@@ -5,7 +5,7 @@ class BudgetTable(QtWidgets.QTableWidget):
     """
             Компонент, визуализирующий таблицу расходов
     """
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.setRowCount(3)

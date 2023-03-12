@@ -2,7 +2,7 @@ from PySide6 import QtWidgets
 
 
 class NewCategoryInput(QtWidgets.QWidget):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self.box = QtWidgets.QHBoxLayout()
         self.label = QtWidgets.QLabel("Категория")

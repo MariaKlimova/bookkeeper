@@ -5,7 +5,7 @@ class ExpensesTable(QtWidgets.QTableWidget):
     """
             Компонент, визуализирующий таблицу расходов
     """
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self.setColumnCount(4)
         self.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
