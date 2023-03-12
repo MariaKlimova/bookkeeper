@@ -21,7 +21,8 @@ class SQLiteRepository(AbstractRepository[T]):
         self.fields = get_annotations(cls, eval_str=True)
         self.fields.pop("pk")
         descriptions = [f'{field} {TYPE_DESCRIPTIONS.get(self.fields[field].__name__)}' for field in self.fields]
-        create_query = f'CREATE TABLE IF NOT EXISTS {self.table_name} ({",".join(descriptions)});'
+        create_query = f'CREATE TABLE IF NOT EXISTS {self.table_name}' \
+                       f' ({"pk INTEGER NOT NULL PRIMARY KEY,"+ ",".join(descriptions)});'
         with sqlite3.connect(self.db_file) as con:
             cur = con.cursor()
             cur.execute(create_query)
@@ -45,7 +46,8 @@ class SQLiteRepository(AbstractRepository[T]):
             cur = con.cursor()
             cur.execute(f'SELECT * FROM {self.table_name} WHERE pk = {pk}')
             record = cur.fetchall()
-            return record
+            if len(record) > 0:
+                return record[0]
 
     def update(self, obj: T) -> None:
         pass

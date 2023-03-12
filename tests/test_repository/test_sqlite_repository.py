@@ -22,7 +22,9 @@ def test_crud(repo, custom_class):
     obj = custom_class()
     pk = repo.add(obj)
     assert obj.pk == pk
-    assert repo.get(pk) == obj
+    foundRecord = repo.get(pk)
+    assert foundRecord[0] == obj.pk
+    assert foundRecord[1] == obj.value
     # obj2 = custom_class()
     # obj2.pk = pk
     # repo.update(obj2)
