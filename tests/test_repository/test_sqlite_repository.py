@@ -5,14 +5,16 @@ import pytest
 
 @pytest.fixture
 def custom_class():
-    class Custom():
+    class Custom:
         pk = 0
 
-    return Custom
+    return Custom()
+
 
 @pytest.fixture
 def repo():
-    return SQLiteRepository()
+    return SQLiteRepository("test1", custom_class)
+
 
 def test_crud(repo, custom_class):
     obj = custom_class()
