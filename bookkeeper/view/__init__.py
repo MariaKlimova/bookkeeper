@@ -11,4 +11,3 @@ window.show()
 # w2.show()
 
 sys.exit(app.exec())
-

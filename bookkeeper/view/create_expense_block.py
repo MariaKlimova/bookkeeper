@@ -1,6 +1,6 @@
 from PySide6 import QtWidgets
-from bookkeeper.view.limit_input import LimitInput
-from bookkeeper.view.categories_input import CategoriesInput
+from limit_input import LimitInput
+from categories_input import CategoriesInput
 
 
 class CreateExpenseBlock(QtWidgets.QWidget):

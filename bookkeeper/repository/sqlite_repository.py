@@ -53,8 +53,7 @@ class SQLiteRepository(AbstractRepository[T]):
             record = cur.fetchall()
             if len(record) > 0:
                 return record[0]
-            else:
-                return None
+            return None
     def update(self, obj: T) -> None:
         names = self.fields.keys()
         #p = ', '.join("?" * len(self.fields))

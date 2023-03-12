@@ -6,7 +6,6 @@ from .new_category_block import NewCategoryInput
 class EditCategoriesWindow(QtWidgets.QWidget):
     def __init__(self) -> None:
         super().__init__()
-
         self.box = QtWidgets.QVBoxLayout()
         self.setWindowTitle("Редактирование категорий")
         self.table = CategoriesTable()
