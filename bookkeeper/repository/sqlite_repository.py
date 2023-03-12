@@ -50,7 +50,19 @@ class SQLiteRepository(AbstractRepository[T]):
                 return record[0]
 
     def update(self, obj: T) -> None:
-        pass
+        names = self.fields.keys()
+        #p = ', '.join("?" * len(self.fields))
+        #values = [getattr(obj, x) for x in self.fields]
+        with sqlite3.connect(self.db_file) as con:
+            cur = con.cursor()
+            # cur.execute('PRAGMA foreign_keys = ON')
+            new_values = [f'{name} = "{getattr(obj, name)}"' for name in names]
+            upd_query = f'UPDATE {self.table_name} ' \
+                       f'SET {", ".join(new_values)}' \
+                       f' WHERE pk = {obj.pk}'
+            # print(upd_query)
+            cur.execute(upd_query)
+        con.close()
 
     def delete(self, pk: int) -> None:
         pass
