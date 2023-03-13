@@ -16,7 +16,8 @@ class EditCategoriesWindow(QtWidgets.QWidget):
         self.box.addWidget(self.new_category_block)
         self.setLayout(self.box)
         self.resize(500, 600)
-
+        self.cats_getter = None
+        self.cats = None
 
         self.show()
 
@@ -25,4 +26,11 @@ class EditCategoriesWindow(QtWidgets.QWidget):
 
     def set_cats_list(self, cats_list):
         self.new_category_block.set_cats_list(cats_list)
-        print('second window cats list', cats_list)
+        #print('second window cats list', cats_list)
+
+    def register_cats_getter(self, cats_getter):
+        self.cats_getter = cats_getter
+        self.cats = cats_getter()
+        self.set_cats_list(self.cats)
+        # self.set_cats_list(sel)
+        print('cats list second window', cats_getter())

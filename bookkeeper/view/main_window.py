@@ -32,6 +32,7 @@ class MainWindow(QtWidgets.QWidget):
 
         self.exp_modifier = None
         self.cat_adder = None
+        self.cats = None
 
     def set_expenses_list(self, exp_list):
         print('exp list', exp_list)
@@ -50,5 +51,6 @@ class MainWindow(QtWidgets.QWidget):
 
     def register_cats_getter(self, handler):
         self.cats = handler()
+        self.create_expense_block.register_cats_getter(handler)
         self.set_cats_list(cats_list=self.cats)
         # self.create_expense_block.categories_input

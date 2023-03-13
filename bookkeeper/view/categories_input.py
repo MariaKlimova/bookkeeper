@@ -6,6 +6,7 @@ class CategoriesInput(QtWidgets.QWidget):
     def on_edit_click(self) -> None:
         self.second_window = EditCategoriesWindow()
         self.second_window.register_cat_adder(self.cat_adder)
+        self.second_window.register_cats_getter(self.cats_getter)
         self.second_window.show()
 
     def __init__(self) -> None:
@@ -27,6 +28,8 @@ class CategoriesInput(QtWidgets.QWidget):
     def register_cat_adder(self, cat_adder):
         self.cat_adder = cat_adder
 
+    def register_cats_getter(self, cats_getter):
+        self.cats_getter = cats_getter
     def set_cats_list(self, cats_list):
         if self.second_window:
             self.second_window.set_cats_list(cats_list)

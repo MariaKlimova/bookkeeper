@@ -29,3 +29,6 @@ class CreateExpenseBlock(QtWidgets.QWidget):
 
     def register_cat_adder(self, cat_adder):
         self.categories_input.register_cat_adder(cat_adder)
+
+    def register_cats_getter(self, cats_getter):
+        self.categories_input.register_cats_getter(cats_getter)

@@ -31,6 +31,6 @@ class NewCategoryInput(QtWidgets.QWidget):
         else:
             raise TypeError("Empty name")
 
-    def sef_cats_list(self, cats_list):
+    def set_cats_list(self, cats_list):
         self.parent.clear()
         self.parent.addItems([opt[1] for opt in cats_list])
