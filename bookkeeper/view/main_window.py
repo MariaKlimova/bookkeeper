@@ -17,6 +17,7 @@ class MainWindow(QtWidgets.QWidget):
 
     def __init__(self) -> None:
         super().__init__()
+        self.chosen_budg = None
         self.exps = None
         self.setWindowTitle("The Bookkeeper App")
         self.vbox = QtWidgets.QVBoxLayout()
@@ -50,7 +51,6 @@ class MainWindow(QtWidgets.QWidget):
         self.categories_edit_block.set_cats_list(cats_list)
 
     def register_cat_adder(self, handler) -> None:
-        print('add category')
         self.categories_edit_block.register_cat_adder(handler)
 
     def register_cats_getter(self, handler) -> None:
@@ -66,6 +66,7 @@ class MainWindow(QtWidgets.QWidget):
         self.chosen_cat = cat
         self.expenses_edit_block.set_category(cat)
         self.budget_edit_block.set_category(cat)
+        self.budget_table.set_category(cat)
 
     def register_cur_cat_setter(self, handler):
         self.categories_edit_block.register_cat_setter(handler)
@@ -80,3 +81,12 @@ class MainWindow(QtWidgets.QWidget):
 
     def register_budget_updater(self, handler):
         self.budget_edit_block.register_budget_updater(handler)
+
+    def register_budget_getter(self, handler):
+        self.budget_table.register_budget_getter(handler)
+        self.set_budget()
+        #self.chosen_budg = handler(self.chosen_cat)
+        #print(self.chosen_budg)
+
+    def set_budget(self):
+        self.budget_table.set_budget()
