@@ -29,7 +29,7 @@ class NewCategoryInput(QtWidgets.QWidget):
     def on_add_click(self):
         name = self.input.text()
         parent = self.parent.currentText()
-        #print(name, parent, self.parent.currentText())
+        # print(name, parent, self.parent.currentText())
         if name != "":
             print(name, parent)
             if parent == "Не выбрана":

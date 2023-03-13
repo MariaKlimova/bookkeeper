@@ -29,13 +29,14 @@ class Bookkeeper:
         self.view.register_cat_adder(self.add_category)
         self.view.register_cats_getter(self.get_cats)
         self.view.register_exp_adder(self.add_expense)
+        self.view.register_exp_getter(self.get_exps)
 
     def modify_exp(self, exp: Expense) -> None:
         print('bookkeeper modify exp')
         # self.expensesRepo.update(exp)
         # self.view.set_expenses_list(self.expenses)
 
-    def add_category(self, cat: Category) ->None:
+    def add_category(self, cat: Category) -> None:
         print('add category fired')
         self.categoriesRepo.add(cat)
         all_cats = self.categoriesRepo.get_all()
@@ -51,5 +52,4 @@ class Bookkeeper:
 
     def get_exps(self) -> list[Expense]:
         return self.expensesRepo.get_all()
-
 

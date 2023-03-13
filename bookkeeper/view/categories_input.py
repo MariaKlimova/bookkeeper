@@ -54,5 +54,5 @@ class CategoriesInput(QtWidgets.QWidget):
         else:
             cat_list = list(filter(lambda x: x[0] == index,  self.cats_list))
             if len(cat_list) > 0:
-                c = Category(pk=cat_list[0][0],name=cat_list[0][1], parent=cat_list[0][2])
+                c = Category(pk=cat_list[0][0], name=cat_list[0][1], parent=cat_list[0][2])
                 self.cat_setter(c)

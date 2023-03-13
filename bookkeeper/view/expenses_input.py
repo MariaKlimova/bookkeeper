@@ -8,7 +8,9 @@ PERIODS = {
     "Месяц": "month"
 }
 
+
 class ExpensesInput(QtWidgets.QWidget):
+    #TODO: add actual date chooser
     def __init__(self) -> None:
         super().__init__()
         self.category = None

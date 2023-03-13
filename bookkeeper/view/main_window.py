@@ -46,9 +46,6 @@ class MainWindow(QtWidgets.QWidget):
         self.register_cat_setter(self.set_category)
 
 
-    def set_expenses_list(self, exp_list) -> None:
-        print('exp list', exp_list)
-
     def set_cats_list(self, cats_list) -> None:
         self.categories_edit_block.set_cats_list(cats_list)
 
@@ -78,5 +75,12 @@ class MainWindow(QtWidgets.QWidget):
     def register_cat_setter(self, handler):
         self.categories_edit_block.register_cat_setter(handler)
 
-    def set_exp_list(self, exp_list):
-        print(exp_list)
+
+    def set_exp_list(self, exp_list) -> None:
+        #print(exp_list)
+        self.expenses_table.set_exp_list(exp_list)
+
+    def register_exp_getter(self, handler):
+        self.exps = handler()
+        self.set_exp_list(exp_list=self.exps)
+        self.expenses_table.set_exp_list(exp_list=self.exps)
