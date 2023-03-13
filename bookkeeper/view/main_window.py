@@ -51,6 +51,7 @@ class MainWindow(QtWidgets.QWidget):
 
     def set_cats_list(self, cats_list) -> None:
         self.categories_edit_block.set_cats_list(cats_list)
+        self.expenses_table.set_cats_list(cats_list)
 
     def register_cat_adder(self, handler) -> None:
         self.categories_edit_block.register_cat_adder(handler)
