@@ -17,6 +17,7 @@ class MainWindow(QtWidgets.QWidget):
 
     def __init__(self) -> None:
         super().__init__()
+        self.exps = None
         self.setWindowTitle("The Bookkeeper App")
         self.vbox = QtWidgets.QVBoxLayout()
 
@@ -43,16 +44,10 @@ class MainWindow(QtWidgets.QWidget):
 
         self.chosen_cat = None
 
-        self.register_cat_setter(self.set_category)
-
+        self.register_cur_cat_setter(self.set_category)
 
     def set_cats_list(self, cats_list) -> None:
         self.categories_edit_block.set_cats_list(cats_list)
-
-    def register_exp_modifier(self, handler) -> None:
-        print('register exp modifier in main window')
-        # self.exp_modifier = handler
-        #self.expenses_edit_block.register_exp_modifier(handler)
 
     def register_cat_adder(self, handler) -> None:
         print('add category')
@@ -70,17 +65,18 @@ class MainWindow(QtWidgets.QWidget):
     def set_category(self, cat: Category | None) -> None:
         self.chosen_cat = cat
         self.expenses_edit_block.set_category(cat)
-        #print('set cat', cat)
+        self.budget_edit_block.set_category(cat)
 
-    def register_cat_setter(self, handler):
+    def register_cur_cat_setter(self, handler):
         self.categories_edit_block.register_cat_setter(handler)
 
-
     def set_exp_list(self, exp_list) -> None:
-        #print(exp_list)
         self.expenses_table.set_exp_list(exp_list)
 
     def register_exp_getter(self, handler):
         self.exps = handler()
         self.set_exp_list(exp_list=self.exps)
         self.expenses_table.set_exp_list(exp_list=self.exps)
+
+    def register_budget_updater(self, handler):
+        self.budget_edit_block.register_budget_updater(handler)

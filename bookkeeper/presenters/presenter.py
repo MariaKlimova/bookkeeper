@@ -2,6 +2,8 @@ from typing import Protocol, Callable
 
 from bookkeeper.models.expense import Expense
 from bookkeeper.models.category import Category
+from bookkeeper.models.budget import Budget
+
 from bookkeeper.repository.sqlite_repository import SQLiteRepository
 from abc import ABC, abstractmethod
 
@@ -21,15 +23,18 @@ class Bookkeeper:
     def __init__(self, view):
         self.expensesRepo = SQLiteRepository('test2', Expense)
         self.categoriesRepo = SQLiteRepository('test2', Category)
+        # self.budgetRepo = None
+        self.budgetsRepo = SQLiteRepository('test2', Budget)
         self.view = view
         self.expenses = self.expensesRepo.get_all()
         self.categories = self.categoriesRepo.get_all()
 
-        self.view.register_exp_modifier(self.modify_exp)
+        # self.view.register_exp_modifier(self.modify_exp)
         self.view.register_cat_adder(self.add_category)
         self.view.register_cats_getter(self.get_cats)
         self.view.register_exp_adder(self.add_expense)
         self.view.register_exp_getter(self.get_exps)
+        self.view.register_budget_updater(self.update_budget)
 
     def modify_exp(self, exp: Expense) -> None:
         print('bookkeeper modify exp')
@@ -53,3 +58,11 @@ class Bookkeeper:
     def get_exps(self) -> list[Expense]:
         return self.expensesRepo.get_all()
 
+    def update_budget(self, budget: Budget):
+        print(self.budgetsRepo.get_all())
+        this_budget = list(filter(lambda x: x[3] == budget.category, self.budgetsRepo.get_all()))
+        if len(this_budget) > 0:
+            budget.pk = this_budget[0][0]
+            self.budgetsRepo.update(budget)
+        else:
+            self.budgetsRepo.add(budget)

@@ -2,12 +2,6 @@ from PySide6 import QtWidgets
 from bookkeeper.models.category import Category
 from bookkeeper.models.expense import Expense
 
-PERIODS = {
-    "День": "day",
-    "Неделя": "week",
-    "Месяц": "month"
-}
-
 
 class ExpensesInput(QtWidgets.QWidget):
     #TODO: add actual date chooser

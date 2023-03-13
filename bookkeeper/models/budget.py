@@ -15,6 +15,6 @@ class Budget:
 
     """
     period: str
-    limit: int
+    limit_maximum: int
     category: int | None = None
     pk: int = 0

@@ -27,7 +27,7 @@ class SQLiteRepository(AbstractRepository[T]):
             if self.fields[field].__class__ == type:
                 descriptions.append(f'{field} {TYPE_DESCRIPTIONS.get(self.fields[field].__name__)}')
             else:
-                if field == "parent":
+                if field == "parent" or field == "category":
                     descriptions.append(f'{field} INTEGER')
         # descriptions = \
         #     [f'{field} {TYPE_DESCRIPTIONS.get(self.fields[field].__name__)}'
