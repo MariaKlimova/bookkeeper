@@ -8,9 +8,10 @@ class BudgetTable(QtWidgets.QTableWidget):
     """
     def __init__(self) -> None:
         super().__init__()
+        self.sums_getter = None
         self.budget_getter = None
         self.category = None
-        self.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        self.setEditTriggers(QtWidgets.QAbstractItemView.EditTrigger.NoEditTriggers)
         self.setRowCount(3)
         self.setColumnCount(2)
         self.setHorizontalHeaderLabels(
@@ -18,9 +19,9 @@ class BudgetTable(QtWidgets.QTableWidget):
         self.setVerticalHeaderLabels("День Неделя Месяц".split())
         self.header = self.horizontalHeader()
         self.header.setSectionResizeMode(
-            0, QtWidgets.QHeaderView.Stretch)
+            0, QtWidgets.QHeaderView.ResizeMode.Stretch)
         self.header.setSectionResizeMode(
-            1, QtWidgets.QHeaderView.Stretch)
+            1, QtWidgets.QHeaderView.ResizeMode.Stretch)
         self.setFixedHeight(self.rowHeight(1)*3 + self.header.height())
         # self.header.setSectionResizeMode(
         #     3, QtWidgets.QHeaderView.Stretch)
@@ -28,6 +29,7 @@ class BudgetTable(QtWidgets.QTableWidget):
     def set_category(self, cat: Category):
         self.category = cat
         self.set_budget()
+        self.set_sums()
 
     def set_budget(self):
         if self.category is None:
@@ -47,3 +49,16 @@ class BudgetTable(QtWidgets.QTableWidget):
         self.budget_getter = handler
         # self.chosen_budg = handler(self.chosen_cat)
         # print(self.chosen_budg)
+
+    def register_sums_getter(self, handler):
+        self.sums_getter = handler
+
+    def set_sums(self):
+        # pass
+        if self.category is None:
+            sums = [0, 0, 0]
+        else:
+            sums = self.sums_getter(self.category)
+        self.setItem(0, 0, QtWidgets.QTableWidgetItem(str(sums[0])))
+        self.setItem(1, 0, QtWidgets.QTableWidgetItem(str(sums[1])))
+        self.setItem(2, 0, QtWidgets.QTableWidgetItem(str(sums[2])))

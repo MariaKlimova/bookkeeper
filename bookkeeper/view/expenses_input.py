@@ -34,7 +34,6 @@ class ExpensesInput(QtWidgets.QWidget):
         amount = self.sum_input.text()
         comment = self.comment_input.text()
         date = self.date_time_picker.dateTime()
-        print(date.date().year(), date.date().month(), date.date().day())
         date = datetime(date.date().year(), date.date().month(), date.date().day())
         if int(amount) < 0:
             raise Exception("Limit should be positive")

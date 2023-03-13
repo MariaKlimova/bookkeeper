@@ -17,6 +17,8 @@ class MainWindow(QtWidgets.QWidget):
 
     def __init__(self) -> None:
         super().__init__()
+        self.sums = None
+        self.sums_getter = None
         self.chosen_budg = None
         self.exps = None
         self.setWindowTitle("The Bookkeeper App")
@@ -90,3 +92,13 @@ class MainWindow(QtWidgets.QWidget):
 
     def set_budget(self):
         self.budget_table.set_budget()
+        #self.sums_getter()
+
+    def set_sums(self):
+        self.budget_table.set_sums()
+
+
+    def register_sums_getter(self, handler):
+        # self.sums_getter = handler
+        self.budget_table.register_sums_getter(handler)
+        # self.sums = handler(cat=None)
