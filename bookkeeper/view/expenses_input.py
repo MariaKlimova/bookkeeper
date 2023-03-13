@@ -1,8 +1,18 @@
 from PySide6 import QtWidgets
+from bookkeeper.models.category import Category
+from bookkeeper.models.expense import Expense
+
+PERIODS = {
+    "День": "day",
+    "Неделя": "week",
+    "Месяц": "month"
+}
 
 class ExpensesInput(QtWidgets.QWidget):
     def __init__(self) -> None:
         super().__init__()
+        self.category = None
+        self.cat_setter = None
         self.box = QtWidgets.QHBoxLayout()
         self.sum_label = QtWidgets.QLabel("Сумма")
         self.sum_input = QtWidgets.QLineEdit("0")
@@ -22,6 +32,19 @@ class ExpensesInput(QtWidgets.QWidget):
         self.exp_adder = None
 
     def on_add_click(self):
-        pass
+        amount = self.sum_input.text()
+        comment = self.comment_input.text()
+        if int(amount) < 0:
+            raise Exception("Limit should be positive")
+        else:
+            if self.category:
+                exp = Expense(amount=int(amount), category=self.category.pk, comment=comment)
+            else:
+                exp = Expense(amount=int(amount), category=0, comment=comment)
+            self.exp_adder(exp)
+
     def register_exp_adder(self, handler):
         self.exp_adder = handler
+
+    def set_category(self, cat: Category):
+        self.category = cat

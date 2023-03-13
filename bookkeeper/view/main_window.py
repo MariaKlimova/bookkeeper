@@ -72,7 +72,11 @@ class MainWindow(QtWidgets.QWidget):
 
     def set_category(self, cat: Category | None) -> None:
         self.chosen_cat = cat
+        self.expenses_edit_block.set_category(cat)
         #print('set cat', cat)
 
     def register_cat_setter(self, handler):
-        self.categories_edit_block.register_set_category(handler)
+        self.categories_edit_block.register_cat_setter(handler)
+
+    def set_exp_list(self, exp_list):
+        print(exp_list)

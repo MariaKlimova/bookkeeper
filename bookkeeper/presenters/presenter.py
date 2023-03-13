@@ -28,6 +28,7 @@ class Bookkeeper:
         self.view.register_exp_modifier(self.modify_exp)
         self.view.register_cat_adder(self.add_category)
         self.view.register_cats_getter(self.get_cats)
+        self.view.register_exp_adder(self.add_expense)
 
     def modify_exp(self, exp: Expense) -> None:
         print('bookkeeper modify exp')

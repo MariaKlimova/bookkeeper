@@ -18,7 +18,7 @@ class Expense:
     pk - id записи в базе данных
     """
     amount: int
-    category: int
+    category: int | None
     expense_date: datetime = field(default_factory=datetime.now)
     added_date: datetime = field(default_factory=datetime.now)
     comment: str = ''

@@ -44,7 +44,7 @@ class CategoriesInput(QtWidgets.QWidget):
         if self.second_window:
             self.second_window.set_cats_list(cats_list)
 
-    def register_set_category(self, handler):
+    def register_cat_setter(self, handler):
         self.cat_setter = handler
 
     def set_category(self, index):

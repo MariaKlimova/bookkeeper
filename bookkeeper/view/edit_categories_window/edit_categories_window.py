@@ -3,9 +3,11 @@ from .categories_table import CategoriesTable
 from .new_category_block import NewCategoryInput
 
 
+
 class EditCategoriesWindow(QtWidgets.QWidget):
     def __init__(self) -> None:
         super().__init__()
+        self.cat_setter = None
         self.cat_adder = None
         self.box = QtWidgets.QVBoxLayout()
         self.setWindowTitle("Редактирование категорий")
@@ -35,3 +37,8 @@ class EditCategoriesWindow(QtWidgets.QWidget):
         self.set_cats_list(self.cats)
         # self.set_cats_list(sel)
         print('cats list second window', cats_getter())
+
+    def register_cat_setter(self, handler):
+        self.cat_setter = handler
+
+
