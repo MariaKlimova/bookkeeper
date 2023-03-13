@@ -1,5 +1,6 @@
 from PySide6 import QtWidgets
 
+
 class BudgetInput(QtWidgets.QWidget):
     def __init__(self) -> None:
         super().__init__()

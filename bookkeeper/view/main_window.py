@@ -5,6 +5,7 @@ from expenses_input import ExpensesInput
 # from create_expense_block import CreateExpenseBlock
 from categories_input import CategoriesInput
 from budget_input import BudgetInput
+from bookkeeper.models.category import Category
 
 from bookkeeper.models.expense import Expense
 
@@ -40,23 +41,38 @@ class MainWindow(QtWidgets.QWidget):
         self.cat_adder = None
         self.cats = None
 
-    def set_expenses_list(self, exp_list):
+        self.chosen_cat = None
+
+        self.register_cat_setter(self.set_category)
+
+
+    def set_expenses_list(self, exp_list) -> None:
         print('exp list', exp_list)
 
-    def set_cats_list(self, cats_list):
+    def set_cats_list(self, cats_list) -> None:
         self.categories_edit_block.set_cats_list(cats_list)
 
-    def register_exp_modifier(self, handler):
+    def register_exp_modifier(self, handler) -> None:
         print('register exp modifier in main window')
         # self.exp_modifier = handler
         #self.expenses_edit_block.register_exp_modifier(handler)
 
-    def register_cat_adder(self, handler):
+    def register_cat_adder(self, handler) -> None:
         print('add category')
         self.categories_edit_block.register_cat_adder(handler)
 
-    def register_cats_getter(self, handler):
+    def register_cats_getter(self, handler) -> None:
         self.cats = handler()
         self.categories_edit_block.register_cats_getter(handler)
         self.set_cats_list(cats_list=self.cats)
         # self.create_expense_block.categories_input
+
+    def register_exp_adder(self, handler) -> None:
+        self.expenses_edit_block.register_exp_adder(handler)
+
+    def set_category(self, cat: Category | None) -> None:
+        self.chosen_cat = cat
+        #print('set cat', cat)
+
+    def register_cat_setter(self, handler):
+        self.categories_edit_block.register_set_category(handler)

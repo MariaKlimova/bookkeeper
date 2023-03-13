@@ -17,7 +17,6 @@ from abc import ABC, abstractmethod
 #
 
 
-
 class Bookkeeper:
     def __init__(self, view):
         self.expensesRepo = SQLiteRepository('test2', Expense)
@@ -43,4 +42,13 @@ class Bookkeeper:
 
     def get_cats(self) -> list[Category]:
         return self.categoriesRepo.get_all()
+
+    def add_expense(self, exp: Expense):
+        self.expensesRepo.add(exp)
+        all_expenses = self.expensesRepo.get_all()
+        self.view.set_exp_list(all_expenses)
+
+    def get_exps(self) -> list[Expense]:
+        return self.expensesRepo.get_all()
+
 
