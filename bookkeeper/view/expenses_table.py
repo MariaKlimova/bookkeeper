@@ -29,7 +29,8 @@ class ExpensesTable(QtWidgets.QTableWidget):
         self.setRowCount(len(exp_list))
         self.exp_list = exp_list
         for i in range(len(exp_list)):
-            self.setItem(i, 0, QtWidgets.QTableWidgetItem(exp_list[i][3]))
+            #print(type(exp_list[i][3]), exp_list[i][3].split(' ')[0])
+            self.setItem(i, 0, QtWidgets.QTableWidgetItem(exp_list[i][3].split(' ')[0]))
             self.setItem(i, 1, QtWidgets.QTableWidgetItem(str(exp_list[i][1])))
             cat_name = "Не выбрана"
             if exp_list[i][2] != 0:
