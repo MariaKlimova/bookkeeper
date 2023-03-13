@@ -1,10 +1,13 @@
 import sys
 from main_window import MainWindow
 from edit_categories_window.edit_categories_window import EditCategoriesWindow
+from bookkeeper.presenters.expensesPresenter import Bookkeeper
 from PySide6 import QtWidgets
 
 app = QtWidgets.QApplication(sys.argv)
 window = MainWindow()
+
+bookkeeper = Bookkeeper(window)
 window.show()
 
 # w2 = EditCategoriesWindow()
