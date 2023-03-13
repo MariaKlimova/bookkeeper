@@ -26,6 +26,7 @@ class EditCategoriesWindow(QtWidgets.QWidget):
 
     def set_cats_list(self, cats_list):
         self.new_category_block.set_cats_list(cats_list)
+        self.table.set_cats_list(cats_list)
         #print('second window cats list', cats_list)
 
     def register_cats_getter(self, cats_getter):
