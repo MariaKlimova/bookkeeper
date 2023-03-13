@@ -1,5 +1,5 @@
 from PySide6 import QtWidgets
-from limit_input import LimitInput
+from expenses_input import ExpensesInput
 from categories_input import CategoriesInput
 
 
@@ -7,12 +7,12 @@ class CreateExpenseBlock(QtWidgets.QWidget):
     def __init__(self) -> None:
         super().__init__()
         self.box = QtWidgets.QVBoxLayout()
-        self.limit_input = LimitInput()
+        self.limit_input = ExpensesInput()
         self.categories_input = CategoriesInput()
         self.addButton = QtWidgets.QPushButton("Добавить")
 
-        self.box.addWidget(self.limit_input)
         self.box.addWidget(self.categories_input)
+        self.box.addWidget(self.limit_input)
         self.box.addWidget(self.addButton)
 
         self.resize(1000, 1000)
