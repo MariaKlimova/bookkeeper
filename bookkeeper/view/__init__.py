@@ -1,16 +1,23 @@
 import sys
-from main_window import MainWindow
-from edit_categories_window.edit_categories_window import EditCategoriesWindow
+from bookkeeper.view.main_window import MainWindow
+from bookkeeper.view.edit_categories_window.edit_categories_window import EditCategoriesWindow
 from bookkeeper.presenters.presenter import Bookkeeper
 from PySide6 import QtWidgets
 
-app = QtWidgets.QApplication(sys.argv)
-window = MainWindow()
 
-bookkeeper = Bookkeeper(window)
-window.show()
+class Run:
+    def __init__(self):
+        app = QtWidgets.QApplication(sys.argv)
+        window = MainWindow()
 
-# w2 = EditCategoriesWindow()
-# w2.show()
+        bookkeeper = Bookkeeper(window)
+        window.show()
 
-sys.exit(app.exec())
+        # w2 = EditCategoriesWindow()
+        # w2.show()
+
+        sys.exit(app.exec())
+
+# def run():
+#     print('run')
+

@@ -1,5 +1,5 @@
 from PySide6 import QtWidgets
-from edit_categories_window.edit_categories_window import EditCategoriesWindow
+from bookkeeper.view.edit_categories_window.edit_categories_window import EditCategoriesWindow
 from bookkeeper.models.category import Category
 
 class CategoriesInput(QtWidgets.QWidget):

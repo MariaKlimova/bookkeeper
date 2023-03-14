@@ -1,10 +1,10 @@
 from PySide6 import QtWidgets
-from expenses_table import ExpensesTable  # type: ignore
-from budget_table import BudgetTable
-from expenses_input import ExpensesInput
+from bookkeeper.view.expenses_table import ExpensesTable  # type: ignore
+from bookkeeper.view.budget_table import BudgetTable
+from bookkeeper.view.expenses_input import ExpensesInput
 # from create_expense_block import CreateExpenseBlock
-from categories_input import CategoriesInput
-from budget_input import BudgetInput
+from bookkeeper.view.categories_input import CategoriesInput
+from bookkeeper.view.budget_input import BudgetInput
 from bookkeeper.models.category import Category
 
 from bookkeeper.models.expense import Expense
