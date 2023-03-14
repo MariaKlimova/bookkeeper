@@ -3,6 +3,9 @@ from bookkeeper.models.category import Category
 
 
 class NewCategoryInput(QtWidgets.QWidget):
+    """
+        Блок создания новой категории
+    """
     def __init__(self) -> None:
         super().__init__()
         self.box = QtWidgets.QHBoxLayout()

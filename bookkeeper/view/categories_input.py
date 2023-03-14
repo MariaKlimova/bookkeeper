@@ -2,7 +2,11 @@ from PySide6 import QtWidgets
 from bookkeeper.view.edit_categories_window.edit_categories_window import EditCategoriesWindow
 from bookkeeper.models.category import Category
 
+
 class CategoriesInput(QtWidgets.QWidget):
+    """
+        Блок выбора категорий
+    """
     def on_edit_click(self) -> None:
         self.second_window = EditCategoriesWindow()
         self.second_window.register_cat_adder(self.cat_adder)

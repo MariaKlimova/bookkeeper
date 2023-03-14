@@ -6,6 +6,9 @@ PERIODS = ["day", "week", "month"]
 
 
 class BudgetInput(QtWidgets.QWidget):
+    """
+        Блок редактирования бюджета категории
+    """
     def __init__(self) -> None:
         super().__init__()
         self.category = None

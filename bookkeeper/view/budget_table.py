@@ -4,7 +4,7 @@ from bookkeeper.models.category import Category
 DAYS = {"day": 1, "week": 7, "month": 30}
 class BudgetTable(QtWidgets.QTableWidget):
     """
-            Компонент, визуализирующий таблицу расходов
+            Компонент, визуализирующий бюджет
     """
     def __init__(self) -> None:
         super().__init__()

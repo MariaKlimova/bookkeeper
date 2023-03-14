@@ -5,7 +5,9 @@ from datetime import datetime
 
 
 class ExpensesInput(QtWidgets.QWidget):
-    #TODO: add actual date chooser
+    """
+        Блок ввода расхода
+    """
     def __init__(self) -> None:
         super().__init__()
         self.category = None
